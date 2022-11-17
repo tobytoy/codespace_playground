@@ -4,7 +4,7 @@ services:
   db:
     image: mysql:latest
     volumes:
-      - volumes/db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: wordpress_root_password
@@ -17,7 +17,7 @@ services:
       - db
     image: wordpress:latest
     volumes:
-      - volumes/wordpress:/var/www/html
+      - wordpress_data:/var/www/html
     ports:
       - "8080:80"
     restart: always
@@ -27,6 +27,6 @@ services:
       WORDPRESS_DB_PASSWORD: wp_database_password
       WORDPRESS_DB_NAME: wordpress
 volumes:
-  volumes/db_data:
-  volumes/wordpress:
+  db_data: {}
+  wordpress_data: {}
 
